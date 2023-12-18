@@ -29,6 +29,10 @@ export default class SortingVisualizer extends Component{
         const {array} = this.state;
 
         return (
+            <>
+            <div className ="banner">
+                <button className="newArray" onClick={() => this.resetArray()}>New Array</button>
+            </div>
             <div className="array-container">
                 {array.map((value, idx) => (
                     <div 
@@ -37,6 +41,7 @@ export default class SortingVisualizer extends Component{
                         style={{height: `${value}px`}}></div>
                 ))}
             </div>
+            </>
         );
     }
 

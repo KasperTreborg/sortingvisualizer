@@ -1,11 +1,9 @@
 import Image from 'next/image'
 
-function App() {
+export default function Home() {
   return (
     <div className="Page">
-      
+      <SortingVisualizer></SortingVisualizer>
     </div>
   )
 }
-
-export default App;

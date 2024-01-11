@@ -25,6 +25,32 @@ export default class SortingVisualizer extends Component{
         this.setState({array});
     }
 
+    bogoSort() {
+        const array = [];
+        let isSorted = false;
+        while (!isSorted) {
+            for (let i = 0; i < 370; i++) {
+                array.push(randomIntFromInterval(5,730));
+            }
+            for (let i = 0; i < 370; i++) {
+                if (i == 0) {
+                    if (array[0] <= array[1]) continue;
+                    }
+                else if (i == 369) {
+                    sorted = true;
+                    break;
+                }
+                else if (array[i-1] <= array[i] && array[i] <= array[i+1]) {
+                    continue;
+                }
+                else {
+                    break;
+                }
+            }
+        };
+        this.setState({array});
+    }
+
     render() {
         const {array} = this.state;
 
@@ -32,6 +58,7 @@ export default class SortingVisualizer extends Component{
             <>
             <div className ="banner">
                 <button className="newArray" onClick={() => this.resetArray()}>New Array</button>
+                <button className="newArray" onClick={() => this.bogoSort()}>Bogo Sort</button>
             </div>
             <div className="array-container">
                 {array.map((value, idx) => (

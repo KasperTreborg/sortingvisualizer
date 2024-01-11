@@ -25,6 +25,14 @@ export default class SortingVisualizer extends Component{
         this.setState({array});
     }
 
+    mergeSort() {}
+
+    quickSort() {}
+
+    heapSort() {}
+
+    bubbleSort() {}
+
     bogoSort() {
         const array = [];
         let isSorted = false;
@@ -58,6 +66,10 @@ export default class SortingVisualizer extends Component{
             <>
             <div className ="banner">
                 <button className="newArray" onClick={() => this.resetArray()}>New Array</button>
+                <button className="newArray" onClick={() => this.mergeSort()}>Merge Sort</button>
+                <button className="newArray" onClick={() => this.quickSort()}>Quick Sort</button>
+                <button className="newArray" onClick={() => this.heapSort()}>Heap Sort</button>
+                <button className="newArray" onClick={() => this.bubbleSort()}>Bubble Sort</button>
                 <button className="newArray" onClick={() => this.bogoSort()}>Bogo Sort</button>
             </div>
             <div className="array-container">

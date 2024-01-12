@@ -4,6 +4,11 @@ import React, {Component} from 'react';
 import './SortingVisualizer.css';
 import * as SortingAlgorithms from "../SortingAlgorithms/SortingAlgorithms.js";
 
+const ANIMATION_SPEED_MS = 3;
+const NUMBER_OF_ARRAY_BARS = 310;
+const PRIMARY_COLOR = 'white';
+const SECONDARY_COLOR = 'red';
+
 export default class SortingVisualizer extends Component{
 
     constructor(props) {
@@ -20,17 +25,37 @@ export default class SortingVisualizer extends Component{
 
     resetArray() {
         const array = [];
-        for (let i = 0; i < 370; i++) {
+        for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
             array.push(randomIntFromInterval(5, 730));
         }
         this.setState({array});
     }
 
     mergeSort() {
-        const javaScriptSortedArray = this.state.array.slice().sort((a,b) => a - b);
-        const sortedArray = SortingAlgorithms.mergeSort(this.state.array);
+        const animations = SortingAlgorithms.getMergeSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bars');
+            const isColorChange = i % 3 !== 2;
 
-        console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
+            if (isColorChange) {
+                const [barOneIndex, barTwoIndex] = animations[i];
+                console.log(arrayBars); // Check the contents of arrayBars
+                const barOneStyle = arrayBars[barOneIndex].style;
+                const barTwoStyle = arrayBars[barTwoIndex].style;
+                const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+                
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * ANIMATION_SPEED_MS);
+            } else {
+                setTimeout(() => {
+                    const [barOneIndex, newHeight] = animations[i];
+                    const barOneStyle = arrayBars[barOneIndex].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * ANIMATION_SPEED_MS);
+            }
+        }
     }
 
     quickSort() {}
@@ -81,9 +106,12 @@ export default class SortingVisualizer extends Component{
             <div className="array-container">
                 {array.map((value, idx) => (
                     <div 
-                        className="array-bar" 
+                        className="array-bars" 
                         key={idx}
-                        style={{height: `${value}px`}}></div>
+                        style={{
+                            backgroundColor: PRIMARY_COLOR,
+                            height: `${value}px`,
+                    }}></div>
                 ))}
             </div>
             </>

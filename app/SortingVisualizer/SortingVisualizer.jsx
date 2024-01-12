@@ -39,7 +39,6 @@ export default class SortingVisualizer extends Component{
 
             if (isColorChange) {
                 const [barOneIndex, barTwoIndex] = animations[i];
-                console.log(arrayBars); // Check the contents of arrayBars
                 const barOneStyle = arrayBars[barOneIndex].style;
                 const barTwoStyle = arrayBars[barTwoIndex].style;
                 const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;

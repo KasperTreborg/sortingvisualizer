@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import './SortingVisualizer.css';
 import * as SortingAlgorithms from "../SortingAlgorithms/SortingAlgorithms.js";
 
-const ANIMATION_SPEED_MS = 3;
+const ANIMATION_SPEED_MS = 1;
 const NUMBER_OF_ARRAY_BARS = 310;
 const PRIMARY_COLOR = 'white';
 const SECONDARY_COLOR = 'red';
@@ -63,31 +63,7 @@ export default class SortingVisualizer extends Component{
 
     bubbleSort() {}
 
-    bogoSort() {
-        const array = [];
-        let isSorted = false;
-        while (!isSorted) {
-            for (let i = 0; i < 370; i++) {
-                array.push(randomIntFromInterval(5,730));
-            }
-            for (let i = 0; i < 370; i++) {
-                if (i == 0) {
-                    if (array[0] <= array[1]) continue;
-                    }
-                else if (i == 369) {
-                    sorted = true;
-                    break;
-                }
-                else if (array[i-1] <= array[i] && array[i] <= array[i+1]) {
-                    continue;
-                }
-                else {
-                    break;
-                }
-            }
-        };
-        this.setState({array});
-    }
+    bogoSort() {}
 
     render() {
         const {array} = this.state;
